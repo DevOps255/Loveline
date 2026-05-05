@@ -59,8 +59,10 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.detail || "Erreur lors de l'inscription. L'email existe peut-être déjà.");
+                const text = await response.text();
+                let errorData = {};
+                try { errorData = JSON.parse(text); } catch {}
+                throw new Error(errorData.detail || `Erreur serveur (${response.status})`);
             }
             const result = await response.json();
             localStorage.setItem('user_firstname', userData.firstName);
