@@ -59,8 +59,10 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.detail || "Erreur lors de l'inscription. L'email existe peut-être déjà.");
+                const text = await response.text();
+                let errorData = {};
+                try { errorData = JSON.parse(text); } catch {}
+                throw new Error(errorData.detail || `Erreur serveur (${response.status})`);
             }
             const result = await response.json();
             localStorage.setItem('user_firstname', userData.firstName);
@@ -93,14 +95,17 @@ export const AuthProvider = ({ children }) => {
             setToken(data.access);
 
             // On définit un faux utilisateur en attendant un endpoint /me/
-            const profileRes = await fetch(`${API.BASE_URL}/profile/me`, {
-                headers: { 'Authorization': `Bearer ${data.access}` }
-            });
             let profileComplete = false;
-            if (profileRes.ok) {
-                const profileData = await profileRes.json();
+            try {
+                const profileRes = await fetch(`${API.BASE_URL}/profile/me`, {
+                    headers: { 'Authorization': `Bearer ${data.access}` }
+                });
+                if (profileRes.ok) {
+                const text = await profileRes.text();
+                const profileData = JSON.parse(text);
                 profileComplete = profileData.is_complete;
-            }
+                }
+            } catch {}
             setUser({ email, profileComplete });
 
             return data;
