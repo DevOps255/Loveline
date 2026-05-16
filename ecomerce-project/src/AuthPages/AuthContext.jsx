@@ -64,7 +64,11 @@ export const AuthProvider = ({ children }) => {
                 try { errorData = JSON.parse(text); } catch {}
                 throw new Error(errorData.detail || `Erreur serveur (${response.status})`);
             }
-            const result = await response.json();
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new Error("Le serveur n'a pas renvoyé une réponse JSON valide. Vérifie l'URL de l'API.");
+            }
+const result = await response.json();
             localStorage.setItem('user_firstname', userData.firstName);
             return result;
         } catch (error) {
