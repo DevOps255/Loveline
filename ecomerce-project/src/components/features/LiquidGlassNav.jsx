@@ -5,7 +5,7 @@
    ═══════════════════════════════════════════════════════════════ */
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, useSpring, useTransform } from 'framer-motion';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../core/theme/useTheme';
 
 const TABS = [
   {

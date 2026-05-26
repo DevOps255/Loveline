@@ -5,14 +5,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 //import des photos
 
-import photoAbel from '../assets/Abel.jpg';
-import photoVivian from '../assets/8ca6f4dc-450f-4369-856c-043b515e0ddf.jpg';
-import photoArlette from '../assets/grace.jpg';
+import photoAbel from '../../shared/assets/Abel.jpg';
+import photoVivian from '../../shared/assets/8ca6f4dc-450f-4369-856c-043b515e0ddf.jpg';
+import photoArlette from '../../shared/assets/grace.jpg';
 
 
 const STRIP_PHOTOS = [
     { src: photoVivian, label: 'Abel   19' },
-    { src: photoVivuan, label: 'Vivian   22' },
+    { src: photoVivian, label: 'Vivian   22' },
     { src: photoVivian, label: 'Arlette   20' },
     { src: 'https://images.unsplash.com/photo-1506836467174-27f1042aa48c?w=320&q=80', label: 'Arlette' },
     { src: 'https://images.unsplash.com/photo-1506836467174-27f1042aa48c?w=320&q=80', label: 'Constant' },

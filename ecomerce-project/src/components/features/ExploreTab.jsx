@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════════ */
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../core/theme/useTheme';
 import { exploreAPI, discoverAPI } from './api.js';
 
 // ─── Category definitions (icons & gradients) ─────────────────────────────────

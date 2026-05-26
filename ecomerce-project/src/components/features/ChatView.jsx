@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════════ */
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../core/theme/useTheme';
 import { messagesAPI, ChatSocket } from './api.js';
 
 // ─── Message bubble ───────────────────────────────────────────────────────────

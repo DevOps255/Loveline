@@ -4,7 +4,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../core/theme/useTheme';
 
 // ─── Particle burst ───────────────────────────────────────────────────────────
 function Particles() {

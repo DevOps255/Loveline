@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════════ */
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../core/theme/useTheme';
 import { likesAPI, discoverAPI } from './api.js';
 import { PremiumModal } from './Modals.jsx';
 

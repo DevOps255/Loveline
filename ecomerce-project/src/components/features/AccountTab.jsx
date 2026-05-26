@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════════ */
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../core/theme/useTheme';
 import { authAPI, profileAPI } from './api.js';
 
 // ─── Field ────────────────────────────────────────────────────────────────────

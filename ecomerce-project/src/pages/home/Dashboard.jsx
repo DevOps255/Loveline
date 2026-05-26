@@ -38,7 +38,9 @@ import { gsap } from 'gsap';
 const photoUrl = (url) => {
     if (!url) return null;
     if (url.startsWith('http')) return url;
-    return `http://localhost:8000${url}`;
+    const base = getBaseUrl();
+    const path = url.startsWith('/') ? url : `/${url}`;
+    return `${base}${path}`;
 };
 
 //calcul de l'âge de l'utilisateur
@@ -1122,9 +1124,7 @@ function SwipeCard({
 
     const photos = profile.photos?.length > 0
         ? profile.photos
-        : [{ url: profile.photo
-                ? `http://localhost:8000${profile.photo}`
-                : (profile.avatar || 'https://via.placeholder.com/400x600') }];
+        : [{ url: photoUrl(profile.photo || profile.avatar || 'https://via.placeholder.com/400x600') }];
 
     // Track direction for overlay
     const rotate = useTransform(x, [-300, 0, 300], [-25, 0, 25]);
@@ -3596,7 +3596,7 @@ function LikeCard({ profile, onLikeBack, onNope, T, isDark }) {
             }}
         >
             <img
-                src={profile.photos?.[0]?.url || (profile.photo ? `http://localhost:8000${profile.photo}` : null) || profile.avatar}
+                src={profile.photos?.[0]?.url || photoUrl(profile.photo) || profile.avatar}
                 alt={profile.first_name}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
@@ -3700,7 +3700,7 @@ function TopPickCard({ profile, onLike, T, isDark }) {
             }}
         >
             <img
-                src={profile.photos?.[0]?.url || (profile.photo ? `http://localhost:8000${profile.photo}` : null) || profile.avatar}
+                src={profile.photos?.[0]?.url || photoUrl(profile.photo) || profile.avatar}
                 alt={profile.first_name}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />

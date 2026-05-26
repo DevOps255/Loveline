@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════════ */
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from './useTheme';
+import { useTheme } from '../../core/theme/useTheme';
 import SwipeCard, { ActionButtons } from './SwipeCard.jsx';
 import { MatchModal, PremiumModal } from './Modals.jsx';
 import { discoverAPI, profileAPI, subscriptionAPI } from './api.js';

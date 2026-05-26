@@ -11,7 +11,12 @@ export const authService = {
     async register(userData) {
         return apiFetch('/api/auth/register', {
             method: 'POST',
-            body: JSON.stringify(userData)
+            body: JSON.stringify({
+                email:      userData.email,
+                first_name: userData.firstName,
+                last_name:  userData.lastName,
+                password:   userData.password,
+            })
         });
     },
 

@@ -27,7 +27,7 @@ import {
     RefreshCw, Feather, Award, Mic, Phone, Lock, ZoomIn, Crop
 } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
-import Navbar from '../pages/nav_bar.jsx';
+import Navbar from '../../components/landing/Navbar';
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -149,6 +149,12 @@ const MIN_INTERESTS = 3;
 const MAX_INTERESTS = 6;
 const MIN_AGE = 16;
 const MAX_AGE = 40;
+
+const getBaseUrl = () => {
+    try { return import.meta.env?.VITE_API_URL || 'http://localhost:8000'; }
+    catch(_) { return 'http://localhost:8000'; }
+};
+const BASE_URL = getBaseUrl();
 
 function countWords(str) { return str.trim().split(/\s+/).filter(Boolean).length; }
 function calculateAge(d) {
@@ -2395,7 +2401,7 @@ export default function ProfileCompletion() {
             if (res.status === 401) {
                 const refresh = localStorage.getItem('ll_refresh');
                 if (!refresh) throw new Error('Session expirée, reconnectez-vous');
-                const rr = await fetch(BASE_URL + '/api/token/refresh', {
+                const rr = await fetch(BASE_URL + '/api/auth/token/refresh', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ refresh }),
